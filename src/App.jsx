@@ -7,15 +7,10 @@ import './styles/index.css'
 
 function App() {
   const [images, setImages] = useState([])
-  const [query, setQuery] = useState('')
 
-  const handleChange = e => setQuery(e.target.value)
-
-  const handleKeyDown = async e => {
-    if (e.key === 'Enter') {
-      const results = await searchImages(query)
-      if (results) setImages(results)
-    }
+  const handleSubmit = async query => {
+    const results = await searchImages(query)
+    if (results) setImages(results)
   }
 
   return (
@@ -27,11 +22,7 @@ function App() {
       </div>
 
       <div className="flex flex-col gap-6">
-        <SearchBar
-          handleChange={handleChange}
-          handleKeyDown={handleKeyDown}
-          query={query}
-        />
+        <SearchBar handleSubmit={handleSubmit} />
 
         {images.length > 0 && <ImageList images={images} />}
       </div>

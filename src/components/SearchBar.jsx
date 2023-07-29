@@ -1,8 +1,18 @@
+import { useState } from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
-function SearchBar({ handleChange, handleKeyDown, query }) {
+function SearchBar({ handleSubmit }) {
+  const [query, setQuery] = useState('')
+
+  const handleChange = e => setQuery(e.target.value)
+
+  const handleFormSubmit = e => {
+    e.preventDefault()
+    handleSubmit(query)
+  }
+
   return (
-    <div className="flex flex-1 justify-center">
+    <form className="flex flex-1 justify-center" onSubmit={handleFormSubmit}>
       <div className="w-full">
         <label htmlFor="search" className="sr-only">
           Search
@@ -20,12 +30,11 @@ function SearchBar({ handleChange, handleKeyDown, query }) {
             placeholder="Search"
             value={query}
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
             className="block w-full rounded-md border border-gray-400 py-1.5 pl-14 pr-3 text-gray-300 placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-0 text-4xl lowercase font-mono"
           />
         </div>
       </div>
-    </div>
+    </form>
   )
 }
 
