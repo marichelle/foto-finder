@@ -2,10 +2,10 @@ import ImageShow from './ImageShow'
 
 function ImageList({ images }) {
   return (
-    <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+    <ul className="columns-2 gap-3 sm:columns-4">
       {images.map(image => {
         return (
-          <li key={image.id}>
+          <li key={image.id} className="w-full mb-3">
             <ImageShow image={image} />
           </li>
         )
